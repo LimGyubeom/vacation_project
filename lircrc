@@ -1,0 +1,309 @@
+#memory_mpd 모드
+begin memory_mpd
+ begin
+     prog = irexec
+     button = key_up
+     config = led.py red addblink & ssd1306_disp_mode.py memory_mpd_up
+     flags = quit
+ end
+ begin
+     prog = irexec
+     button = key_left
+     config = led.py red addblink & ssd1306_disp_mode.py memory_mpd_left
+     flags = quit
+ end
+ begin
+     prog = irexec
+     button = key_down
+     config = led.py red addblink & ssd1306_disp_mode.py memory_mpd_down
+     flags = quit
+ end
+ begin
+     prog = irexec
+     button = key_enter
+     config = led.py red addblink & ssd1306_disp_mode.py memory_mpd_enter
+     flags = quit
+ end
+ begin
+     prog = irexec
+     button = key_right
+     config = led.py red addblink & ssd1306_disp_mode.py memory_mpd_right
+     flags = quit
+ end
+end memory_mpd
+
+#mpd모드
+begin mpd
+ begin
+     prog = irexec
+     button = key_ct
+     config = mpc -q play; mpc -q next
+     flags = quit
+ end
+ begin
+     prog = irexec
+     button = key_cb
+     config = mpc -q play; mpc -q prev
+     flags = quit
+ end
+ begin
+     prog = irexec
+     button = key_up
+     config = led.py green addblink & mpc -q pause
+     config = led.py green addblink & mpc -q play
+     flags = quit
+ end
+ begin
+     prog = irexec
+     button = key_left
+     config = led.py green addblink & ssd1306_disp_mode.py mpd_random
+     flags = quit
+ end
+ begin
+     prog = irexec
+     button = key_down
+     config = led.py green addblink & mpc -q stop
+     config = led.py green addblink & mpc -q play
+     flags = quit
+ end
+ begin
+     prog = irexec
+     button = key_enter
+     config = led.py green addblink & ssd1306_disp_mode.py mpd_repeat
+     flags = quit
+ end
+ begin
+     prog = irexec
+     button = key_right
+     config = led.py green addblink & ssd1306_disp_mode.py mpd_display
+     flags = quit
+ end
+end mpd
+
+#clock 모드
+begin clock
+ begin
+     prog = irexec
+     button = key_up
+     config = led.py yellow addblink & ssd1306_disp_mode.py clock_up
+     flags = quit
+ end
+ begin
+     prog = irexec
+     button = key_left
+     config = led.py yellow addblink & ssd1306_disp_mode.py clock_presetdown
+     flags = quit
+ end
+ begin
+     prog = irexec
+     button = key_down
+     config = led.py yellow addblink & ssd1306_disp_mode.py clock_down
+     flags = quit
+ end
+ begin
+     prog = irexec
+     button = key_right
+     config = led.py yellow addblink & ssd1306_disp_mode.py clock_presetup
+     flags = quit
+ end
+end clock
+
+begin inet_radio
+ begin
+     prog = irexec
+     button = key_power
+     config = led.py blue addblink & inet_radio.py start
+     config = led.py blue addblink & inet_radio.py pause
+     flags = quit
+ end
+ begin
+     prog = irexec
+     button = key_up
+     config = led.py blue addblink & ssd1306_disp_mode.py memory_inet_radio_up
+     flags = quit
+ end
+ begin
+     prog = irexec
+     button = key_left
+     config = led.py blue addblink & ssd1306_disp_mode.py memory_inet_radio_left
+     flags = quit
+ end
+ begin
+     prog = irexec
+     button = key_down
+     config = led.py blue addblink & ssd1306_disp_mode.py memory_inet_radio_down
+     flags = quit
+ end
+ begin
+     prog = irexec
+     button = key_enter
+     config = led.py blue addblink & ssd1306_disp_mode.py memory_inet_radio_enter
+     flags = quit
+ end
+ begin
+     prog = irexec
+     button = key_right
+     config = led.py blue addblink & ssd1306_disp_mode.py memory_inet_radio_right
+     flags = quit
+ end
+end inet_radio
+
+begin weather
+ begin
+     prog = irexec
+     button = key_up
+     config = led.py magenta addblink & ssd1306_disp_mode.py weather_up
+     flags = quit
+ end
+ begin
+     prog = irexec
+     button = key_left
+     config = led.py magenta addblink & ssd1306_disp_mode.py weather_left
+     flags = quit
+ end
+ begin
+     prog = irexec
+     button = key_down
+     config = led.py magenta addblink & ssd1306_disp_mode.py weather_tuningdown
+     flags = quit
+ end
+ begin
+     prog = irexec
+     button = key_right
+     config = led.py magenta addblink & ssd1306_disp_mode.py weather_right
+     flags = quit
+ end
+end weather
+
+begin
+    prog = irexec
+    button = key_power
+    config = led.py cyan; led.py yellow addblink & pkill -9 -x mplayer; ssd1306_disp_mode.py mpd
+    flags = quit
+end
+begin
+    prog = irexec
+    button = key_tv
+    config = mpc -q play
+    flags = quit
+end
+begin
+    prog = irexec
+    button = key_ei
+    config = mpc -q pause
+    flags = quit
+end
+begin
+    prog = irexec
+    button = key_1
+    config = led.py red & ssd1306_disp_mode.py memory_mpd & inet_radio pause
+    mode = memory_mpd
+    flags = quit
+end
+begin
+    prog = irexec
+    button = key_2
+    config = led.py green & ssd1306_disp_mode.py mpd & mpc -q play & inet_radio pause & volume.py unmute
+    mode = mpd
+    flags = quit
+end
+begin
+    prog = irexec
+    button = key_3
+    config = led.py yellow & ssd1306_disp_mode.py clock & mpc -q pause & inet_radio pause
+    mode = clock
+    flags = quit
+end
+begin
+    prog = irexec
+    button = key_4
+    config = led.py blue & ssd1306_disp_mode.py inet_radio & mpc pause & inet_radio start &volume.py unmute
+    mode = inet_radio
+    flags = quit
+end
+begin
+    prog = irexec
+    button = key_5
+    config = led.py magenta & ssd1306_disp_mode.py weather & mpc pause & inet_radio pause
+    mode = weather
+    flags = quit
+end
+begin
+    prog = irexec
+    button = key_vp
+    config = volume.py up
+    repeat = 1
+    delay = 8
+    flags = quit
+end
+begin
+    prog = irexec
+    button = key_vm
+    config = volume.py down
+    repeat = 1
+    delay = 8
+    flags = quit
+end
+begin
+    prog = irexec
+    button = key_vq
+    config = volume.py mute
+    config = volume.py unmute
+    flags = quit
+end
+begin
+    prog = irexec
+    button = key_ct
+    config = mpc -q play; mpc -q next
+    flags = quit
+end
+begin
+    prog = irexec
+    button = key_cb
+    config = mpc -q play; mpc -q prev
+    flags = quit
+end
+begin
+    prog = irexec
+    button = key_em
+    config = ssd1306_disp_mode.py mpd & mpc -q play
+    config = ssd1306_disp_mode.py memory_mpd & mpc -q pause
+    config = ssd1306_disp_mode.py clock & mpc -q pause
+    config = ssd1306_disp_mode.py inet_radio & mpc -q pause 
+    config = ssd1306_disp_mode.py weather & mpc -q pause 
+    flags = quit
+end
+begin
+    prog = irexec
+    button = key_c
+    config = reboot
+    flags = quit
+end
+begin
+    prog = irexec
+    button = key_red
+    config = led.py red & ssd1306_disp_mode.py mpd
+    mode = mpd
+    flags = quit
+end
+begin
+    prog = irexec
+    button = key_green
+    config = led.py green & ssd1306_disp_mode.py memory_mpd
+    mode = memory_mpd 
+    flags = quit
+end
+begin
+    prog = irexec
+    button = key_yellow
+    config = led.py yellow & ssd1306_disp_mode.py clock
+    mode = clock
+    flags = quit
+end
+begin
+    prog = irexec
+    button = key_blue
+    config = led.py blue & ssd1306_disp_mode.py inet_radio
+    mode = inet_radio
+    flags = quit
+end
